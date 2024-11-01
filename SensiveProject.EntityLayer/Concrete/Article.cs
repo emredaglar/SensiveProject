@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SensiveProject.EntityLayer.Concrete
-{
+{//makale
     public class Article
     {
         public int ArticleId { get; set; }
@@ -15,6 +15,8 @@ namespace SensiveProject.EntityLayer.Concrete
         public string CoverImageUrl { get; set; }
         public int CategoryId { get; set; }
         public Category category { get; set; }
+        public int AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
 
     }
 }

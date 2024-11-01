@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace SensiveProject.DataAccessLayer.Repositories
 {
+    //tekrardan kaçınmak için yapılmış base
     public class GenericRepository<T> : IGenericDal<T> where T : class
     {
         private readonly SensiveContext _context;
