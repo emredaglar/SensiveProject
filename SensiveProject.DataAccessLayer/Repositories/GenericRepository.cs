@@ -38,11 +38,13 @@ namespace SensiveProject.DataAccessLayer.Repositories
         public void Insert(T entity)
         {
             _context.Set<T>().Add(entity);
+            _context.SaveChanges();
         }
 
         public void Update(T entity)
         {
             _context.Set<T>().Update(entity);
+            _context.SaveChanges();
         }
     
     }
