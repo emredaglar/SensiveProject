@@ -9,35 +9,50 @@ using System.Threading.Tasks;
 
 namespace SensiveProject.BusinessLayer.Concrete
 {
-	public class ArticleManager : IArticleService
-	{
-		private readonly IArticleDal _articleDal;
-		
-		public void TDelete(int id)
-		{
-			_articleDal.Delete(id);
-		}
+    public class ArticleManager : IArticleService
+    {
+        private readonly IArticleDal _articleDal;
 
-		public List<Article> TGetAll()
-		{
-			return _articleDal.GetAll();
-		}
+        public ArticleManager(IArticleDal articleDal)
+        {
+            _articleDal = articleDal;
+        }
 
-		public Article TGetById(int id)
-		{
-			return _articleDal.GetById(id);
+        public List<Article> TArticleListWithCategoryAndAppUser()
+        {
+            return _articleDal.ArticleListWithCategoryAndAppUser();
+        }
+
+        public List<Article> TArticleListWithCategory()
+        {
+            return _articleDal.ArticleListWithCategory();
+        }
+
+        public void TDelete(int id)
+        {
+            _articleDal.Delete(id);
+        }
+
+        public List<Article> TGetAll()
+        {
+            return _articleDal.GetAll();
+        }
+
+        public Article TGetById(int id)
+        {
+            return _articleDal.GetById(id);
 
 
-		}
+        }
 
-		public void TInsert(Article entity)
-		{
-			_articleDal.Insert(entity);
-		}
+        public void TInsert(Article entity)
+        {
+            _articleDal.Insert(entity);
+        }
 
-		public void TUpdate(Article entity)
-		{
-			_articleDal.Update(entity);
-		}
-	}
+        public void TUpdate(Article entity)
+        {
+            _articleDal.Update(entity);
+        }
+    }
 }
