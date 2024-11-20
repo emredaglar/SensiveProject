@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SensiveProject.BusinessLayer.Abstract;
 using SensiveProject.BusinessLayer.Concrete;
+using SensiveProject.EntityLayer.Concrete;
 
 namespace SensiveProject.PresentationLayer.Controllers
 {
@@ -51,9 +52,51 @@ namespace SensiveProject.PresentationLayer.Controllers
                                                 Text = x.UserName,
                                                 Value = x.Id.ToString()
                                             }).ToList();
-            ViewBag.v1=values1;
-            ViewBag.v2=values2;
+            ViewBag.v1 = values1;
+            ViewBag.v2 = values2;
             return View();
         }
+
+        [HttpPost]
+        public IActionResult CreateArticle(Article article)
+        {
+            article.CreatedDate = DateTime.Now;
+            _articleService.TInsert(article);
+            return RedirectToAction("ArticleListWithCategoryAndAppUser");
+        }
+        public IActionResult DeleteArticle(int id)
+        {
+            _articleService.TDelete(id);
+            return RedirectToAction("ArticleListWithCategoryAndAppUser");
+        }
+        [HttpGet]
+        public IActionResult UpdateArticle(int id)
+        {
+            var categoryList = _categoryService.TGetAll();
+            var appUserList = _appUserService.TGetAll();
+            List<SelectListItem> values1 = (from x in categoryList
+                                            select new SelectListItem
+                                            {
+                                                Text = x.CategoryName,
+                                                Value = x.CategoryId.ToString()
+                                            }).ToList();
+            List<SelectListItem> values2 = (from x in appUserList
+                                            select new SelectListItem
+                                            {
+                                                Text = x.UserName,
+                                                Value = x.Id.ToString()
+                                            }).ToList();
+            ViewBag.v1 = values1;
+            ViewBag.v2 = values2;
+            var updatedValue=_articleService.TGetById(id);
+            return View(updatedValue);
+        }
+        [HttpPost]
+        public IActionResult UpdateArticle(Article article)
+        {
+            _articleService.TUpdate(article);
+            return RedirectToAction("ArticleListWithCategoryAndAppUser");
+        }
+
     }
 }

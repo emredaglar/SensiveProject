@@ -1,4 +1,5 @@
 ﻿using SensiveProject.BusinessLayer.Abstract;
+using SensiveProject.DataAccessLayer.Abstract;
 using SensiveProject.EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,37 +11,37 @@ namespace SensiveProject.BusinessLayer.Concrete
 {
     public class AppUserManager : IAppUserService
     {
-        private readonly IAppUserService _appUserService;
+        private readonly IAppUserDal _appUserDal;
 
-        public AppUserManager(IAppUserService appUserService)
+        public AppUserManager(IAppUserDal appUserDal)
         {
-            _appUserService = appUserService;
+            _appUserDal = appUserDal;
         }
 
         public void TDelete(int id)
         {
-           _appUserService.TDelete(id);
+            _appUserDal.Delete(id);
            
         }
 
         public List<AppUser> TGetAll()
         {
-           return _appUserService.TGetAll();
+           return _appUserDal.GetAll();
         }
 
         public AppUser TGetById(int id)
         {
-            return _appUserService.TGetById(id);
+            return _appUserDal.GetById(id);
         }
 
         public void TInsert(AppUser entity)
         {
-            _appUserService.TInsert(entity);
+            _appUserDal.Insert(entity);
         }
 
         public void TUpdate(AppUser entity)
         {
-            _appUserService.TUpdate(entity);
+            _appUserDal.Update(entity);
         }
     }
 }
