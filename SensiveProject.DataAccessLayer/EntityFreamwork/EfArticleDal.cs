@@ -30,5 +30,12 @@ namespace SensiveProject.DataAccessLayer.EntityFreamwork
             var values = context.Articles.Include(x => x.category).Include(y=>y.AppUser).ToList();
             return values;
         }
+
+        public Article GetLastArticle()
+        {
+            var context = new SensiveContext();
+            var value=context.Articles.OrderByDescending(x=>x.ArticleId).Take(1).FirstOrDefault();
+            return value;
+        }
     }
 }

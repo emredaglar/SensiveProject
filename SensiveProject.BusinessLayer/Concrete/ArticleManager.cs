@@ -54,5 +54,10 @@ namespace SensiveProject.BusinessLayer.Concrete
         {
             _articleDal.Update(entity);
         }
+
+        public Article TGetLastArticle()
+        {
+           return _articleDal.GetLastArticle();
+        }
     }
 }

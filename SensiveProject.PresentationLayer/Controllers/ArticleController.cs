@@ -30,11 +30,13 @@ namespace SensiveProject.PresentationLayer.Controllers
             var values = _articleService.TArticleListWithCategory();
             return View(values);
         }
+
         public IActionResult ArticleListWithCategoryAndAppUser()
         {
             var values = _articleService.TArticleListWithCategoryAndAppUser();
             return View(values);
         }
+
         [HttpGet]
         public IActionResult CreateArticle()
         {
@@ -88,7 +90,7 @@ namespace SensiveProject.PresentationLayer.Controllers
                                             }).ToList();
             ViewBag.v1 = values1;
             ViewBag.v2 = values2;
-            var updatedValue=_articleService.TGetById(id);
+            var updatedValue = _articleService.TGetById(id);
             return View(updatedValue);
         }
         [HttpPost]
@@ -97,6 +99,12 @@ namespace SensiveProject.PresentationLayer.Controllers
             _articleService.TUpdate(article);
             return RedirectToAction("ArticleListWithCategoryAndAppUser");
         }
+        public IActionResult ArticleDetail(int id)
+        {
+            var value = _articleService.TGetById(id);
+            return View(value);
+        }
+
 
     }
 }
