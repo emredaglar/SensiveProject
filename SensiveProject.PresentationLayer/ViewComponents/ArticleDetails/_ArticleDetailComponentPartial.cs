@@ -13,7 +13,7 @@ namespace SensiveProject.PresentationLayer.ViewComponents.ArticleDetails
         }
         public IViewComponentResult Invoke(int id)
         {
-            id = 1;
+           
             var value=_articleService.TGetById(id);
             return View(value);
         }

@@ -9,5 +9,7 @@ namespace SensiveProject.BusinessLayer.Abstract
 {
 	public interface ICommentService : IGenericService<Comment>
 	{
-	}
+        public List<Comment> TGetCommentsByAricleId(int id);
+
+    }
 }

@@ -101,10 +101,11 @@ namespace SensiveProject.PresentationLayer.Controllers
         }
         public IActionResult ArticleDetail(int id)
         {
+            ViewBag.i = id;
             var value = _articleService.TGetById(id);
             return View(value);
         }
-
+        
 
     }
 }
